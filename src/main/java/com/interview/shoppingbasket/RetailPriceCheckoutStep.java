@@ -27,6 +27,19 @@ public class RetailPriceCheckoutStep implements CheckoutStep {
         /*
          * Implement applyPromotion method
          */
-        return retailTotal;
+
+    	if (promotion.getDiscount() == 50) {
+    		price = price * 0.5;
+    	}
+    	if (promotion.getDiscount() == 10) {
+    		price = price * 0.9;
+    	}
+    	if (promotion.getExtraItem() == true) {
+    		item.setQuantity(item.getQuantity() + 1);
+    	}
+
+    	retailTotal = item.getQuantity() * price;
+
+    	return retailTotal;
     }
 }
